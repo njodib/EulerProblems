@@ -1,3 +1,2 @@
 projecteuler.net
 username: Jodi_IV
-key: 2132807_0x7N5B7GFFVO8ZYqyvZpiS6R84UNmtNc
