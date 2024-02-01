@@ -1,1 +1,2 @@
-Jodi_IV solves Euler problems!
+projecteuler.net
+username: Jodi_IV
