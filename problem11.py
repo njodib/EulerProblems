@@ -1,7 +1,22 @@
 # Largest Product in a Grid
 # What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally)
-'''
-08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
+
+import numpy as np
+
+def max_adj_prod(arr, n):
+    return max([arr[i:i+n].prod() for i in range(len(arr)+1-n)])
+
+def max_prod(s, n):
+    a = np.array([list(map(int, row.split(' '))) for row in s.split('\n')])
+    prods = [max_adj_prod(a[i], n) for i in range(len(a))] #rows
+    prods += [max_adj_prod(a[:,i], n) for i in range(len(a))] #cols
+    prods += [max_adj_prod(a.diagonal(i), n) for i in range(n-len(a), len(a)+1-n)] # neg diagonals
+    a = np.fliplr(a)
+    prods += [max_adj_prod(a.diagonal(i), n) for i in range(n-len(a), len(a)+1-n)] # pos diagonals
+    return max(prods)
+
+
+s = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
 52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
@@ -20,5 +35,6 @@
 04 42 16 73 38 25 39 11 24 94 72 18 08 46 29 32 40 62 76 36
 20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
-01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
-'''
+01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"""
+
+print(max_prod(s,4))
