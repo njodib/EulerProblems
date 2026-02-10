@@ -14,6 +14,6 @@ def Nth_prime(N):
         i += 1
         if is_prime(i):
             prime_ct += 1
-    return prime_ct
+    return i
 
 print(Nth_prime(10001))
